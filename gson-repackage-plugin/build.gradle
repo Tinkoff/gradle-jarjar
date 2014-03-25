@@ -1,0 +1,21 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+
+group = 'ru.tcsbank.repackage'
+version = '1.0'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('http://build.tcsbank.ru:8111/nexus/content/repositories/tcs-mobile')) {
+                authentication(userName: 'mobile', password: 'mobile123')
+            }
+
+        }
+    }
+}

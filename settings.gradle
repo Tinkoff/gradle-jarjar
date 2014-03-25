@@ -1,0 +1,3 @@
+rootProject.name = 'tcs-gradle-plugins'
+
+include 'gson-repackage-plugin'
