@@ -18,8 +18,8 @@ class GsonRepackagePlugin implements Plugin<Project> {
         }
 
         project.task("applyPatch", dependsOn: 'downloadPatchLib') << {
-            if(!project.file('build/libs/').exists()){
-                project.file('build/libs/').mkdir()
+            if(!project.file('build/libs').exists()){
+                project.file('build/libs').mkdir()
             }
             if (!project.file('build/libs/gson-patched.jar').exists()) {
                 project.ant {
