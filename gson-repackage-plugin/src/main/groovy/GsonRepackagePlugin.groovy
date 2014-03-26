@@ -18,11 +18,14 @@ class GsonRepackagePlugin implements Plugin<Project> {
         }
 
         project.task("applyPatch", dependsOn: 'downloadPatchLib') << {
-            if (!project.file('libs/gson-patched.jar').exists()) {
+            if(!project.file('build/libs/').exists()){
+                project.file('build/libs/').mkdir()
+            }
+            if (!project.file('build/libs/gson-patched.jar').exists()) {
                 project.ant {
                     taskdef name: "jarjar", classname: "com.tonicsystems.jarjar.JarJarTask", classpath: project.configurations.patch.asPath
-                    jarjar(jarfile: 'libs/gson-patched.jar') {
-                        zipfileset(src: "libs/gson-${project.gsonVersion}.jar")
+                    jarjar(jarfile: 'build/libs/gson-patched.jar') {
+                        zipfileset(src: "build/libs/gson-downloaded.jar")
                         rule pattern: "com.google.gson.**", result: "ru.tcsbank.wallet.gson.patched.@1"
                     }
                 }
@@ -31,7 +34,7 @@ class GsonRepackagePlugin implements Plugin<Project> {
 
 
         project.task("downloadPatchLib", type: Copy) {
-            into('libs')
+            into('build/libs')
             from(project.configurations.patch)
             exclude('jarjar*')
             duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
@@ -44,7 +47,7 @@ class GsonRepackagePlugin implements Plugin<Project> {
         }
 
         project.task("cleanupDownloadedPatchLib", type: Delete, dependsOn: 'applyPatch') {
-            delete "libs/gson-${project.gsonVersion}.jar"
+            delete "build/libs/gson-downloaded.jar"
         }
     }
 }

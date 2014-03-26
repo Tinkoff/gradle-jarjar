@@ -7,7 +7,7 @@ dependencies {
 }
 
 group = 'ru.tcsbank.repackage'
-version = '1.0'
+version = '1.0.0'
 
 uploadArchives {
     repositories {
@@ -15,7 +15,6 @@ uploadArchives {
             repository(url: uri('http://build.tcsbank.ru:8111/nexus/content/repositories/tcs-mobile')) {
                 authentication(userName: 'mobile', password: 'mobile123')
             }
-
         }
     }
 }
