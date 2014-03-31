@@ -7,7 +7,7 @@ dependencies {
 }
 
 group = 'ru.tcsbank.repackage'
-version = '1.0.2'
+version = '1.0.22'
 
 uploadArchives {
     repositories {

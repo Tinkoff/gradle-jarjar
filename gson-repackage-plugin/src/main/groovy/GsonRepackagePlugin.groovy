@@ -18,7 +18,7 @@ class GsonRepackagePlugin implements Plugin<Project> {
         }
 
         project.task("applyPatch", dependsOn: 'downloadPatchLib') << {
-            if(!project.file('build/libs').exists()){
+            if (!project.file('build/libs').exists()) {
                 project.file('build/libs').mkdir()
             }
             if (!project.file('build/libs/gson-patched.jar').exists()) {
@@ -36,8 +36,12 @@ class GsonRepackagePlugin implements Plugin<Project> {
         project.task("downloadPatchLib", type: Copy) {
             into('build/libs')
             from(project.configurations.patch)
+            rename { fileName ->
+                "gson-downloaded.jar"
+            }
             exclude('jarjar*')
             duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+
         }
 
         project.tasks.whenTaskAdded { task ->
