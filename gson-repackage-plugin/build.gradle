@@ -12,9 +12,7 @@ version = '1.0.22'
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: uri('http://build.tcsbank.ru:8111/nexus/content/repositories/tcs-mobile')) {
-                authentication(userName: 'mobile', password: 'mobile123')
-            }
+          //your repository 
         }
     }
 }
