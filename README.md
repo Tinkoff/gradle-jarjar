@@ -13,9 +13,36 @@ And if you use newest GSON version in your own project you'll get runtime errors
 
 Installation
 ------------
+
+```groovy
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'ru.tinkoff.gradle:jarjar:1.1.0'
+    }
+}
+
+apply plugin: 'ru.tinkoff.gradle.jarjar'
+
+dependencies {
+    // Which artifacts should be repackaged
+    jarJar 'com.google.code.gson:gson:2.3'
+
+    // Repackaged jars will be placed here, adding them to classpath
+    compile fileTree(dir: './build/libs', include: ['*.jar'])
+}
+
+jarJar {
+    // OPTIONAL - jarjar artifact from Central Repository
+    jarJarDependency 'com.googlecode.jarjar:jarjar:1.3'
+
+    // Dependencies and related JarJar rules
+    rules = ['gson-2.3.jar': 'com.google.gson.** ru.tinkoff.core.gson.@1']
+}
 ```
-TODO instructions
-```
+
 License
 -------
 Plugin available under [MIT][2] license
