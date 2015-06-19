@@ -13,6 +13,7 @@ And if you use newest GSON version in your own project you'll get runtime errors
 
 Installation
 ------------
+Download the latest [version][2] or grab it via Gradle:
 
 ```groovy
 buildscript {
@@ -45,7 +46,8 @@ jarJar {
 
 License
 -------
-Plugin available under [MIT][2] license
+Plugin available under [MIT][3] license
 
 [1]: https://code.google.com/p/jarjar/
-[2]: http://opensource.org/licenses/MIT
+[2]: http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22ru.tinkoff.gradle%22%20AND%20a%3A%22jarjar%22
+[3]: http://opensource.org/licenses/MIT
