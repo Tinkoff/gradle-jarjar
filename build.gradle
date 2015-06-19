@@ -1,7 +1,6 @@
 ext {
     pluginVersion = '1.1.0'
 
-    repoUrl = ''
-    repoUser = ''
-    repoPass = ''
+    ossrhReleasesUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+    ossrhSnapshotsUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
 }

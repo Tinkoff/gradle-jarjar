@@ -1,5 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
+apply plugin: 'signing'
 
 dependencies {
     compile gradleApi()
@@ -12,9 +13,61 @@ version = rootProject.pluginVersion
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: uri(rootProject.repoUrl)) {
-                authentication(userName: rootProject.repoUser, password: rootProject.repoPass)
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: uri(rootProject.ossrhReleasesUrl)) {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: uri(rootProject.ossrhSnapshotsUrl)) {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Gradle JarJar Repackage Plugin'
+                packaging 'jar'
+                description 'Plugin for gradle which allows you to repackage jar-libraries with different package names using JarJar tool.'
+                url 'https://github.com/TinkoffCreditSystems/gradle-jarjar'
+
+                scm {
+                    connection 'scm:https://github.com/TinkoffCreditSystems/gradle-jarjar.git'
+                    developerConnection 'scm:git:https://github.com/TinkoffCreditSystems/gradle-jarjar.git'
+                    url 'https://github.com/TinkoffCreditSystems/gradle-jarjar'
+                }
+
+                licenses {
+                    license {
+                        name 'The MIT License (MIT)'
+                        url 'https://github.com/TinkoffCreditSystems/gradle-jarjar/blob/master/LISENCE.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'd-tarasov'
+                        name 'Dmitriy Tarasov'
+                        email 'd.tarasov@tinkoff.ru'
+                    }
+                }
             }
         }
     }
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
 }
