@@ -24,7 +24,7 @@ uploadArchives {
             }
 
             pom.project {
-                name 'Gradle JarJar Repackage Plugin'
+                name '${project.groupId}:${project.artifactId}'
                 packaging 'jar'
                 description 'Plugin for gradle which allows you to repackage jar-libraries with different package names using JarJar tool.'
                 url 'https://github.com/TinkoffCreditSystems/gradle-jarjar'
@@ -37,7 +37,7 @@ uploadArchives {
 
                 licenses {
                     license {
-                        name 'The MIT License (MIT)'
+                        name 'MIT License'
                         url 'https://github.com/TinkoffCreditSystems/gradle-jarjar/blob/master/LISENCE.txt'
                     }
                 }
