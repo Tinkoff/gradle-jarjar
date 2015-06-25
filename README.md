@@ -1,7 +1,3 @@
-DEPRECATED
-==========
-Project released at [GitHub][4] and published in [Maven Central][2] if you want to make some fixes please clone it from GitHub
-
 Gradle JarJar Repackage Plugin
 ==============================
 
@@ -55,4 +51,3 @@ Plugin available under [MIT][3] license
 [1]: https://code.google.com/p/jarjar/
 [2]: http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22ru.tinkoff.gradle%22%20AND%20a%3A%22jarjar%22
 [3]: http://opensource.org/licenses/MIT
-[4]: https://github.com/TinkoffCreditSystems/gradle-jarjar
